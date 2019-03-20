@@ -6,7 +6,7 @@ use Ahmed3lawady\UserRole\UserRole;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
-class RoleController extends Controller
+class UserRoleController extends Controller
 {
     public function index()
     {
