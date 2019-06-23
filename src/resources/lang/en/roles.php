@@ -1,7 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: subzero
- * Date: 6/21/19
- * Time: 11:47 PM
- */
+
+return [
+	'roles' => 'Roles',
+	'role' => 'Roles',
+	'create-new-role' => 'Create New Role',
+	'update-role' => 'Update Role',
+	'created-msg' => 'Role has been created successfully...',
+	'updated-msg' => 'Role has been updated successfully...',
+	'deleted-msg' => 'Role has been deleted successfully...',
+	'error-msg'	=> 'Something went wrong...',
+];

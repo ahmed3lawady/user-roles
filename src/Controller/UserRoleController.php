@@ -15,9 +15,9 @@ class UserRoleController extends Controller
 
     public function create()
     {
-        $title = 'Create new role';
+        $title = trans('roles.create-new-role');
         $routeActions = collect(Route::getRoutes()->getRoutes())->reject(function ($itm){
-            return $itm->getAction()['namespace'] != 'App\Http\Controllers\Backend';
+            return $itm->getAction()['namespace'] != config('roles.controller-path');
         })->map(function ($itm){
             $act = explode('@', str_replace($itm->getAction()['namespace'].'\\', '', $itm->getAction()['controller']));
             return $act[0];
@@ -29,15 +29,15 @@ class UserRoleController extends Controller
     public function store()
     {
     	return (UserRole::create(request(['title', 'roles']))) ?
-            back()->with('msg', trans('common.saved')) :
-            back()->with('msg', trans('common.error'));
+            back()->with('msg', trans('roles.saved-msg')) :
+            back()->with('msg', trans('roles.error-msg'));
     }
 
     public function edit(UserRole $role)
     {
-        $title = 'Update role';
+        $title = trans('roles.update-role');
         $routeActions = collect(Route::getRoutes()->getRoutes())->reject(function ($itm){
-            return $itm->getAction()['namespace'] != 'App\Http\Controllers\Backend';
+            return $itm->getAction()['namespace'] != config('roles.controller-path');
         })->map(function ($itm){
             $act = explode('@', str_replace($itm->getAction()['namespace'].'\\', '', $itm->getAction()['controller']));
             return $act[0];
@@ -49,14 +49,14 @@ class UserRoleController extends Controller
     public function update(UserRole $role)
     {
         return ($role->update(request(['title', 'roles']))) ?
-            back()->with('msg', trans('common.updated')) :
-            back()->with('msg', trans('common.error'));
+            back()->with('msg', trans('roles.updated-msg')) :
+            back()->with('msg', trans('roles.error-msg'));
     }
 
     public function destroy($id)
     {
         return (UserRole::destroy($id)) ?
-            back()->with('msg', trans('common.delete-success')) :
-        	back()->with('msg', trans('common.delete-failed'));
+            back()->with('msg', trans('roles.deleted-msg')) :
+        	back()->with('msg', trans('roles.error-msg'));
     }
 }

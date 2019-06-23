@@ -23,10 +23,24 @@ class UserRoleServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		$this->loadRoutesFrom(__DIR__.'/routes.php');
-		$this->loadMigrationsFrom(__DIR__.'/migrations');
-		$this->loadViewsFrom(__DIR__.'/views', 'user-roles');
+
+		$this->loadMigrationsFrom(__DIR__ . '/database/migrations');
 		$this->publishes([
-			__DIR__.'/views' => base_path('resources/views/vendor/ahmed3lawady/user-roles'),
+			__DIR__.'/database/migrations/' => database_path('migrations')
+		], 'migrations');
+
+		$this->loadTranslationsFrom(__DIR__.'/resources/lang', 'roles');
+		$this->publishes([
+			__DIR__.'/resources/lang' => resource_path('lang/roles'),
 		]);
+
+		$this->loadViewsFrom(__DIR__ . '/views', 'user-roles');
+		$this->publishes([
+			__DIR__ . '/views' => resource_path('views/vendor/ahmed3lawady/user-roles')
+		]);
+
+		$this->publishes([
+			__DIR__.'/config/roles.php' => config_path('roles.php')
+		], 'config');
 	}
 }
